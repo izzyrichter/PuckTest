@@ -28,18 +28,20 @@ $(document).ready(function () {
       var date_win_min = t.getTime();
       var date_win_max = date_win_min + 2*taxis_increment;   
 
-      var g = new Dygraph(document.getElementById("div_g"), data,
-                          {
-                            drawPoints: true,
-                            showRoller: true,
-                            digitsAfterDecimal: 3,
-                            dateWindow: [date_win_min, date_win_max],
+      var g = new Dygraph(document.getElementById("div_g"), data, 
+                          
+      {
+                            
+            drawPoints: true,
+            showRoller: true,
+            digitsAfterDecimal: 3,
+            dateWindow: [date_win_min, date_win_max],
                             // valueRange: [980, 1020],
                             labels: ['Time', 'Acceleration'],
                             showRangeSelector: true
                           });
                           
-                           function onLine(v) {
+ function onLine(v) {
             if(rec_flag) {
                         var x = new Date();  // current time 
                         var y = parseFloat(v);
@@ -61,7 +63,7 @@ $(document).ready(function () {
                               connection.write("clearInterval(1)\n", function() { });
                         } else {
                               data.splice(0,data.length);
-                              connection.write("setInterval(function(){Bluetooth.println(acceleration());} ,50); \n", function() { });
+                              connection.write("setInterval(function(){Bluetooth.println(acceleration().toFixed(3));} ,20); \n", function() { });
                               t = new Date();
                               start_time = t;
                               var date_win_min = t.getTime();
