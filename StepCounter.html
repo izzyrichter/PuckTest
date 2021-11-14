@@ -12,7 +12,7 @@
 
 </head>
 <body>
-<div id="div_g" style="width:1200px; height:600px;"></div>
+<div id="div_g" style="width:400px; height:400px;"></div>
 <script type="text/javascript">
 $(document).ready(function () {
       var data = [];
@@ -21,7 +21,8 @@ $(document).ready(function () {
       var connection;
       var xconnect = document.getElementById("myPuck_connect");
       var savemy_CSV = document.getElementById("my_Savedata");
-      var rec_startstop = document.getElementById("myrecord_start"); 
+      var rec_startstop = document.getElementById("myrecord_start");
+      var ratedisplay = document.getElementById("div_g");
       var taxis_increment = 10 * 1000;           /// axis increment in milliseconds
       var t = new Date();
       data.push([t, 1000.000]);
@@ -59,6 +60,20 @@ $(document).ready(function () {
                               rec_flag = true;
                               rec_startstop.textContent= "Stop Recording";
                         };  
+      }
+      function display_rate() {
+            var steps = dataArray[1];
+            var height = prompt("What is your height in cm?");
+            var weight = prompt("What is your weight in lbs?");
+            var calories_per_mile;
+            var strip;
+            var conversion_factor;
+            var calories;
+            calories_per_mile = 0.57*weight;
+            strip = height*0.415;
+            conversion_factor = steps*strip/160934.4;
+            calories = steps*conversion_factor;
+            ratedisplay.textContent= calories.toFixed(3);
       }
 
       function bluetooth_connect() {
