@@ -73,7 +73,7 @@ $(document).ready(function () {
             strip = height*0.415;
             conversion_factor = steps*strip/160934.4;
             calories = steps*conversion_factor;
-            ratedisplay.textContent= calories.toFixed(3);
+            ratedisplay.textContent= "Total Calories Burnt:" + calories.toFixed(3);
       }
 
       function bluetooth_connect() {
