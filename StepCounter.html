@@ -62,7 +62,7 @@ $(document).ready(function () {
                         };  
       }
       function display_rate() {
-            var steps = dataArray[1];
+            var steps = data.slice(-1);
             var height = prompt("What is your height in cm?");
             var weight = prompt("What is your weight in lbs?");
             var calories_per_mile;
