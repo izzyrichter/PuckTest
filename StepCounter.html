@@ -39,6 +39,7 @@ $(document).ready(function () {
       
       function startstop_record() 
       {                
+            console.log("in startstop")
                         if(rec_flag) {
                               rec_startstop.textContent = "Start New Recording";
                               rec_flag = false; 
@@ -124,7 +125,9 @@ function savemyCSV() {
 
       xconnect.addEventListener("click", function () { bluetooth_connect() } );
       savemy_CSV.addEventListener("click", function () { savemyCSV() } );
-      rec_startstop.addEventListener("click", function () { startstop_record() } );
+      rec_startstop.addEventListener("click", function () { 
+            console.log("registered click")
+            startstop_record() } );
     }); 
 
 
