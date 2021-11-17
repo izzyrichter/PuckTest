@@ -58,16 +58,18 @@ $(document).ready(function () {
                               rec_startstop.textContent= "Stop Recording";
                               var height = prompt("What is your height in cm?");
                               var weight = prompt("What is your weight in lbs?");
-                              var steps = data.slice(-1);
-                              var calories_per_mile;
-                              var strip;
-                              var conversion_factor;
-                              var calories;
-                              calories_per_mile = 0.57*weight;
-                              strip = height*0.415;
-                              conversion_factor = steps*strip/160934.4;
-                              calories = steps*conversion_factor;
-                              ratedisplay.textContent= "Total Calories Burnt:" + calories.toFixed(3);
+                              while rec_flag ==true {
+                                    var steps = data.slice(-1);
+                                    var calories_per_mile;
+                                    var strip;
+                                    var conversion_factor;
+                                    var calories;
+                                    calories_per_mile = 0.57*weight;
+                                    strip = height*0.415;
+                                    conversion_factor = steps*strip/160934.4;
+                                    calories = steps*conversion_factor;
+                                    ratedisplay.textContent= "Total Calories Burnt:" + calories.toFixed(3);
+                              }
                         };  
       }
 
