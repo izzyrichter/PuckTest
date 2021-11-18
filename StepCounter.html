@@ -61,13 +61,15 @@ $(document).ready(function () {
                               function calorie_calc() {
                                     var steps = data.slice(-1);
                                     var calories_per_mile;
+                                    var steps_per_mile;
                                     var strip;
                                     var conversion_factor;
                                     var calories;
-                                    calories_per_mile = 0.57*weight;
-                                    strip = height*0.415;
-                                    conversion_factor = steps*strip/160934.4;
-                                    calories = steps*conversion_factor;
+                                    calories_per_mile = 0.57 * (weight * 2.2);
+                                    strip = height * 0.415;
+                                    steps_per_mile = 160934.4 / strip;
+                                    conversion_factor = calories_per_mile / steps_per_mile;
+                                    calories = steps * conversion_factor;
                                     ratedisplay.textContent= "Total Calories Burnt:" + calories.toFixed(3);
                               }
                         };  
