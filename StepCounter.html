@@ -33,7 +33,13 @@ $(document).ready(function () {
             if(rec_flag) {
                         var x = new Date();  // current time 
                         var y = parseFloat(v);
+                        if ( x.getTime() >= date_win_max) {
+                                    date_win_min += taxis_increment;
+                                     date_win_max += taxis_increment;
+                                     g.updateOptions( { dateWindow : [date_win_min, date_win_max] } );
+                        };
                         data.push([x, y]);
+                        g.updateOptions( { 'file': data } );
             };
       }  
       
