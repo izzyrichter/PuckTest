@@ -57,6 +57,8 @@ $(document).ready(function () {
                               rec_startstop.textContent= "Stop Recording";
                               var height = prompt("What is your height in cm?");
                               var weight = prompt("What is your weight in lbs?");
+                              setInterval(calorie_calc(),6000);
+                              function calorie_calc() {
                                     var steps = data.slice(-1);
                                     var calories_per_mile;
                                     var strip;
@@ -67,6 +69,7 @@ $(document).ready(function () {
                                     conversion_factor = steps*strip/160934.4;
                                     calories = steps*conversion_factor;
                                     ratedisplay.textContent= "Total Calories Burnt:" + calories.toFixed(3);
+                              }
                         };  
       }
 
