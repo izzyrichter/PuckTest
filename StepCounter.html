@@ -40,6 +40,19 @@ $(document).ready(function () {
                         };
                         data.push([x, y]);
                         g.updateOptions( { 'file': data } );
+                  
+                        var steps = y;
+                        var calories_per_mile;
+                        var steps_per_mile;
+                        var strip;
+                        var conversion_factor;
+                        var calories;
+                        calories_per_mile = 0.57 * (weight * 2.2);
+                        strip = height * 0.415;
+                        steps_per_mile = 160934.4 / strip;
+                        conversion_factor = calories_per_mile / steps_per_mile;
+                        calories = steps * conversion_factor;
+                        ratedisplay.textContent= "Total Calories Burnt:" + calories.toFixed(3);
             };
       }  
       
@@ -57,21 +70,21 @@ $(document).ready(function () {
                               rec_startstop.textContent= "Stop Recording";
                               var height = prompt("What is your height in cm?");
                               var weight = prompt("What is your weight in lbs?");
-                              setInterval(calorie_calc(),6000);
-                              function calorie_calc() {
-                                    var steps = data.slice(-1);
-                                    var calories_per_mile;
-                                    var steps_per_mile;
-                                    var strip;
-                                    var conversion_factor;
-                                    var calories;
-                                    calories_per_mile = 0.57 * (weight * 2.2);
-                                    strip = height * 0.415;
-                                    steps_per_mile = 160934.4 / strip;
-                                    conversion_factor = calories_per_mile / steps_per_mile;
-                                    calories = steps * conversion_factor;
-                                    ratedisplay.textContent= "Total Calories Burnt:" + calories.toFixed(3);
-                              }
+//                               setInterval(calorie_calc(),6000);
+//                               function calorie_calc() {
+//                                     var steps = data.slice(-1);
+//                                     var calories_per_mile;
+//                                     var steps_per_mile;
+//                                     var strip;
+//                                     var conversion_factor;
+//                                     var calories;
+//                                     calories_per_mile = 0.57 * (weight * 2.2);
+//                                     strip = height * 0.415;
+//                                     steps_per_mile = 160934.4 / strip;
+//                                     conversion_factor = calories_per_mile / steps_per_mile;
+//                                     calories = steps * conversion_factor;
+//                                     ratedisplay.textContent= "Total Calories Burnt:" + calories.toFixed(3);
+//                               }
                         };  
       }
 
