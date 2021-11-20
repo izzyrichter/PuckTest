@@ -16,6 +16,8 @@
 <script type="text/javascript">
 $(document).ready(function () {
       var data = [];
+      var weight;
+      var height;
       var rec_flag = false;
       var start_time;
       var connection;
@@ -68,8 +70,8 @@ $(document).ready(function () {
                               start_time = t;                     
                               rec_flag = true;
                               rec_startstop.textContent= "Stop Recording";
-                              var height = prompt("What is your height in cm?");
-                              var weight = prompt("What is your weight in lbs?");
+                              height = prompt("What is your height in cm?");
+                              weight = prompt("What is your weight in lbs?");
 //                               setInterval(calorie_calc(),6000);
 //                               function calorie_calc() {
 //                                     var steps = data.slice(-1);
