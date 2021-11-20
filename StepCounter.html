@@ -41,23 +41,21 @@ $(document).ready(function () {
                         if ( x.getTime() >= date_win_max) {
                                     date_win_min += taxis_increment;
                                      date_win_max += taxis_increment;
-                                     // g.updateOptions( { dateWindow : [date_win_min, date_win_max] } );
                         };
                         data.push([x, y]);
-                        // g.updateOptions( { 'file': data } );
                   
-                        var steps = y;
-                        var calories_per_mile;
+                        var steps = y; // gets current step count from puck
+                        var calories_per_mile; 
                         var steps_per_mile;
                         var strip;
                         var conversion_factor;
                         var calories;
-                        calories_per_mile = 0.57 * (weight * 2.2);
+                        calories_per_mile = 0.57 * (weight * 2.2); //equation for calories from step count from livestrong.com
                         strip = height * 0.415;
                         steps_per_mile = 160934.4 / strip;
                         conversion_factor = calories_per_mile / steps_per_mile;
                         calories = steps * conversion_factor;
-                        ratedisplay.textContent= "Total Calories Burnt:" + calories.toFixed(3);
+                        ratedisplay.textContent= "Total Calories Burnt:" + calories.toFixed(3); //updates text box with current calorie count
             };
       }  
       
@@ -73,23 +71,8 @@ $(document).ready(function () {
                               start_time = t;                     
                               rec_flag = true;
                               rec_startstop.textContent= "Stop Recording";
-                              height = prompt("What is your height in cm?");
-                              weight = prompt("What is your weight in lbs?");
-//                               setInterval(calorie_calc(),6000);
-//                               function calorie_calc() {
-//                                     var steps = data.slice(-1);
-//                                     var calories_per_mile;
-//                                     var steps_per_mile;
-//                                     var strip;
-//                                     var conversion_factor;
-//                                     var calories;
-//                                     calories_per_mile = 0.57 * (weight * 2.2);
-//                                     strip = height * 0.415;
-//                                     steps_per_mile = 160934.4 / strip;
-//                                     conversion_factor = calories_per_mile / steps_per_mile;
-//                                     calories = steps * conversion_factor;
-//                                     ratedisplay.textContent= "Total Calories Burnt:" + calories.toFixed(3);
-//                               }
+                              height = prompt("What is your height in cm?"); //asks user what their height is in cm
+                              weight = prompt("What is your weight in lbs?"); //asks user to input their weight for the equation
                         };  
       }
 
