@@ -12,6 +12,7 @@
 
 </head>
 <body>
+<div id="div_f" style="width:400px; height:400px;"></div>
 <div id="div_g" style="width:1200px; height:600px;"></div>
 <script type="text/javascript">
 $(document).ready(function () {
@@ -22,11 +23,13 @@ $(document).ready(function () {
       var xconnect = document.getElementById("myPuck_connect");
       var savemy_CSV = document.getElementById("my_Savedata");
       var rec_startstop = document.getElementById("myrecord_start"); 
+      var resprate_display = document.getElementById("div_f");
       var taxis_increment = 10 * 1000;           /// axis increment in milliseconds
       var t = new Date();
       data.push([t, 1000.000]);
       var date_win_min = t.getTime();
       var date_win_max = date_win_min + 2*taxis_increment;   
+      npm install lpf;
 
       var g = new Dygraph(document.getElementById("div_g"), data, 
                           
@@ -53,6 +56,34 @@ $(document).ready(function () {
                         data.push([x, y]);
                         g.updateOptions( { 'file': data } );
             };
+            setInterval(respcalc,60000);
+            peaks = [];
+            function respcalc() {
+                  var resp_current = data.slice(-3000);
+                  const findMaxima = (resp_current = []) => {
+                  let positions = []
+                  let maximas = []
+                  for (let i = 1; i < resp_current.length - 1; i++) {
+                         if (resp_current[i] > resp_current[i - 1]) {
+                               if (resp_current[i] > resp_current[i + 1]) {
+                                     positions.push(i)
+                                     maximas.push(resp_current[i])
+                               } 
+                         else if (resp_current[i] === resp_current[i + 1]) {
+                               let temp = i
+                               while (resp_current[i] === resp_current[temp]) i++
+                               if (resp_current[temp] > resp_current[i]) {
+                               positions.push(temp)
+               maximas.push(resp_current[temp])
+            }
+         }
+      }
+   }
+  // peaks = [ maximas, positions ];
+};
+}
+       resprate = length(maximas);
+       resprate_display.textContent = "Current Respiration Rate:" + resprate.toFixed(3); //updates text box with current respiration rate
       }  
 
       function startstop_record()
