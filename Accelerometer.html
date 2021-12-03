@@ -56,9 +56,6 @@ $(document).ready(function () {
                         data.push([x, y]);
                         g.updateOptions( { 'file': data } );
             };
-            setInterval(respcalc,60000);
-            peaks = [];
-            function respcalc() {
                   var resp_current = data.slice(-3000);
                   const findMaxima = (resp_current = []) => {
                   let positions = []
@@ -81,7 +78,7 @@ $(document).ready(function () {
    }
   // peaks = [ maximas, positions ];
 };
-}
+
        resprate = length(maximas);
        resprate_display.textContent = "Current Respiration Rate:" + resprate.toFixed(3); //updates text box with current respiration rate
       }  
