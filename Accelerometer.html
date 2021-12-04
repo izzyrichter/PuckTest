@@ -76,7 +76,7 @@ $(document).ready(function () {
        // ternary check: if results array is not empty give result array, else give false
   return result.length ? result : false;
 };
-       var resprate = peakFinder(resp_current(-3000));
+       var resprate = peakFinder(resp_current(-3000)).length;
        resprate_display.textContent = "Current Respiration Rate:" + resprate.toFixed(3); //updates text box with current respiration rate
       }  
 
