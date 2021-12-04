@@ -58,8 +58,8 @@ $(document).ready(function () {
                                      g.updateOptions( { dateWindow : [date_win_min, date_win_max] } );
                         };
                         data.push([x, y]);
-                        resp_current.push(y);
                         g.updateOptions( { 'file': data } );
+                        resp_current.push(y);
             };
 
        var peakFinder = function(array) {
@@ -77,7 +77,7 @@ $(document).ready(function () {
   return result.length ? result : false;
 };
        var resprate = peakFinder(resp_current(-3000));
-       resprate_display.textContent = "Current Respiration Rate:" + resprate; //updates text box with current respiration rate
+       resprate_display.textContent = "Current Respiration Rate:" + resprate.toFixed(3); //updates text box with current respiration rate
       }  
 
       function startstop_record()
