@@ -27,6 +27,7 @@ $(document).ready(function () {
       var savemy_CSV = document.getElementById("my_Savedata");
       var rec_startstop = document.getElementById("myrecord_start"); 
       var resprate_display = document.getElementById("div_f");
+      var resp_current = [];
       var taxis_increment = 10 * 1000;           /// axis increment in milliseconds
       var t = new Date();
       data.push([t, 1000.000]);
@@ -50,15 +51,17 @@ $(document).ready(function () {
             if(rec_flag) {
                         var x = new Date();  // current time 
                         var y = parseFloat(v);
+
                         if ( x.getTime() >= date_win_max) {
                                     date_win_min += taxis_increment;
                                      date_win_max += taxis_increment;
                                      g.updateOptions( { dateWindow : [date_win_min, date_win_max] } );
                         };
                         data.push([x, y]);
+                        resp_current.push(y);
                         g.updateOptions( { 'file': data } );
             };
-                  var resp_current = data.slice(-3000);
+
        var peakFinder = function(array) {
              // instantiate an array as result
               var result = [];
@@ -73,7 +76,7 @@ $(document).ready(function () {
        // ternary check: if results array is not empty give result array, else give false
   return result.length ? result : false;
 };
-       var resprate = peakFinder(resp_current);
+       var resprate = peakFinder(resp_current(-3000));
        resprate_display.textContent = "Current Respiration Rate:" + resprate; //updates text box with current respiration rate
       }  
 
