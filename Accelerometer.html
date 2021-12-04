@@ -56,27 +56,21 @@ $(document).ready(function () {
                         g.updateOptions( { 'file': data } );
             };
                   var resp_current = data.slice(-3000);
-                  const findMaxima = (resp_current = []) => {
-                  var positions = [];
-                  var maximas = [];
-                  for (let i = 1; i < resp_current.length - 1; i++) {
-                         if (resp_current[i] > resp_current[i - 1]) {
-                               if (resp_current[i] > resp_current[i + 1]) {
-                                     positions.push(i)
-                                     maximas.push(resp_current[i])
-                               } 
-                         else if (resp_current[i] === resp_current[i + 1]) {
-                               let temp = i
-                               while (resp_current[i] === resp_current[temp]) i++
-                               if (resp_current[temp] > resp_current[i]) {
-                               positions.push(temp)
-               maximas.push(resp_current[temp])
-            }
-         }
-      }
-   }
-       resprate = length(maximas);
+       var peakFinder = function(array) {
+             // instantiate an array as result
+              var result = [];
+             // iterate over input
+             _.each(array, function(val,key,col){
+             // check left and right neighbors
+             if(col[key+1] < val && col[key-1] < val) {
+                   // add information to results array
+                    result.push([key,val]);
+    }
+  });
+       // ternary check: if results array is not empty give result array, else give false
+  return result.length ? result : false;
 };
+       var resprate = peakFinder(resp_current);
        resprate_display.textContent = "Current Respiration Rate:" + resprate.toFixed(3); //updates text box with current respiration rate
       }  
 
