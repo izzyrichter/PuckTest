@@ -83,8 +83,8 @@ $(document).ready(function () {
                   value += (currentValue - value) / smoothing;
                   values[i] = value;
             }
-       var resprate = peakFinder(resp_current.slice(-3000));
-       resprate = resprate.length;
+       var resprate_array = peakFinder(resp_current.slice(-3000));
+       var resprate = resprate_array.length;
        resprate_display.textContent = "Current Respiration Rate:" + resprate.toFixed; //updates text box with current respiration rate
       }
 }  
