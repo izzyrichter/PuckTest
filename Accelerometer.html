@@ -84,7 +84,7 @@ $(document).ready(function () {
                         };
                         data.push([x, y]);
                         g.updateOptions( { 'file': data } );
-                        if(y>=1 || y<=-1)
+                        if(y>=1 || y<=-1){
                               resp_current.push(y);
                         else
                               resp_current.push(resp_current(-1));
