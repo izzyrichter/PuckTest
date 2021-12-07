@@ -60,7 +60,7 @@ $(document).ready(function () {
                             labels: ['Time', 'Acceleration'],
                             showRangeSelector: true
                           });
-      setInterval(smoothArray(resp_current,10),60000);
+      
       function smoothArray( values, smoothing ){
             var value = values[0]; // start with the first input
             for (var i=1, len=values.length; i<len; ++i){
@@ -90,6 +90,7 @@ $(document).ready(function () {
                               resp_current.push(resp_current.slice(-1));
                               resprate_display.textContent = "Signal Quality Index Low";
                         };
+                        setInterval(smoothArray(resp_current,10),60000);
                         resprate_display.textContent = "Current Respiration Rate:" + resprate; //updates text box with current respiration rate
             };
 }  
