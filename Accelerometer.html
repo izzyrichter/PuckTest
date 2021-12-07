@@ -32,7 +32,33 @@ $(document).ready(function () {
       var t = new Date();
       data.push([t, 1000.000]);
       var date_win_min = t.getTime();
-      var date_win_max = date_win_min + 2*taxis_increment;   
+      var date_win_max = date_win_min + 2*taxis_increment; 
+      var peakFinder = function(array) {
+      // instantiate an array as result
+       var result = [];
+      // iterate over input
+      _.each(array, function(val,key,col){
+      // check left and right neighbors
+      if(col[key+1] < val && col[key-1] < val) {
+            // add information to results array
+            result.push([key,val]);
+      }
+      });
+      // ternary check: if results array is not empty give result array, else give false
+       return result.length ? result : false;
+      };
+      setInterval(smoothArray(resp_current,8),60000);
+      function smoothArray( values, smoothing ){
+            var value = values[0]; // start with the first input
+            for (var i=1, len=values.length; i<len; ++i){
+                  var currentValue = values[i];
+                  value += (currentValue - value) / smoothing;
+                  values[i] = value;
+            }
+            var resprate_array = peakFinder(resp_current.slice(-3000));
+            var resprate = resprate_array.length;
+            resprate_display.textContent = "Current Respiration Rate:" + resprate.toFixed; //updates text box with current respiration rate
+      }
 
       var g = new Dygraph(document.getElementById("div_g"), data, 
                           
@@ -61,33 +87,6 @@ $(document).ready(function () {
                         g.updateOptions( { 'file': data } );
                         resp_current.push(y);
             };
-            var peakFinder = function(array) {
-                  // instantiate an array as result
-                   var result = [];
-                  // iterate over input
-                  _.each(array, function(val,key,col){
-                  // check left and right neighbors
-                  if(col[key+1] < val && col[key-1] < val) {
-                        // add information to results array
-                        result.push([key,val]);
-                  }
-                  });
-                  // ternary check: if results array is not empty give result array, else give false
-                   return result.length ? result : false;
-            };
-      //setInterval(smoothArray(resp_current,8),60000);
-      function smoothArray( values, smoothing ){
-            var value = values[0]; // start with the first input
-            for (var i=1, len=values.length; i<len; ++i){
-                  var currentValue = values[i];
-                  value += (currentValue - value) / smoothing;
-                  values[i] = value;
-            }
-      }
-       smoothArray(resp_current,10);
-       var resprate_array = peakFinder(resp_current.slice(-3000));
-       var resprate = resprate_array.length;
-       resprate_display.textContent = "Current Respiration Rate:" + resprate.toFixed; //updates text box with current respiration rate
 }  
 
       function startstop_record()
