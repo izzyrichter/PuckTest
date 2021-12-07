@@ -86,7 +86,7 @@ $(document).ready(function () {
                         g.updateOptions( { 'file': data } );
                         if(y>=1 || y<=-1){
                               resp_current.push(y);
-                        else
+                        } else {
                               resp_current.push(resp_current(-1));
                               resprate_display.textContent = "Signal Quality Index Low";
                         };
