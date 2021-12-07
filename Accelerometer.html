@@ -87,7 +87,7 @@ $(document).ready(function () {
                         if(y>=1 || y<=-1){
                               resp_current.push(y);
                         } else {
-                              resp_current.push(resp_current(-1));
+                              resp_current.push(resp_current.slice(-1));
                               resprate_display.textContent = "Signal Quality Index Low";
                         };
                         resprate_display.textContent = "Current Respiration Rate:" + resprate; //updates text box with current respiration rate
