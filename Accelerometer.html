@@ -60,7 +60,7 @@ $(document).ready(function () {
                             labels: ['Time', 'Acceleration'],
                             showRangeSelector: true
                           });
-      setInterval(smoothArray(resp_current,8),60000);
+      setInterval(smoothArray(resp_current,10),60000);
       function smoothArray( values, smoothing ){
             var value = values[0]; // start with the first input
             for (var i=1, len=values.length; i<len; ++i){
@@ -69,8 +69,7 @@ $(document).ready(function () {
                   values[i] = value;
             }
             var resprate_array = peakFinder(resp_current.slice(-3000));
-            var resprate = resprate_array.length;
-            resprate_display.textContent = "Current Respiration Rate:" + resprate; //updates text box with current respiration rate
+            resprate = resprate_array.length;
       }
                           
  function onLine(v) {
@@ -86,6 +85,7 @@ $(document).ready(function () {
                         data.push([x, y]);
                         g.updateOptions( { 'file': data } );
                         resp_current.push(y);
+                        resprate_display.textContent = "Current Respiration Rate:" + resprate; //updates text box with current respiration rate
             };
 }  
 
