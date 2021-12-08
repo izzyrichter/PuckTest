@@ -68,7 +68,7 @@ $(document).ready(function () {
                   value += (currentValue - value) / smoothing;
                   values[i] = value;
             }
-            var resprate_array = peakFinder(values(-3000));
+            var resprate_array = peakFinder(values.slice(-3000));
             console.log(resprate_array);
             resprate = resprate_array.length;
             console.log(resprate);
