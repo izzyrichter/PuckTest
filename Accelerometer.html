@@ -90,8 +90,10 @@ $(document).ready(function () {
                               resp_current.push(resp_current.slice(-1));
                               resprate_display.textContent = "Signal Quality Index Low";
                         };
-                        setInterval(smoothArray(resp_current,10),60000);
-                        resprate_display.textContent = "Current Respiration Rate:" + resprate; //updates text box with current respiration rate
+                        if(Number.isInteger(data.length/3000)){
+                              smoothArray(resp_current,10);
+                              resprate_display.textContent = "Current Respiration Rate:" + resprate; //updates text box with current respiration rate
+                        };
             };
 }  
 
