@@ -97,6 +97,7 @@ $(document).ready(function () {
                               resp_current.push(y);
                         };
                         if(Number.isInteger(data.length/3000)){
+                              console.log(findPeaksAndTroughs(resp_current.slice(-3000));
                               smoothArray(resp_current,5);
                               resprate_display.textContent = "Current Respiration Rate:" + resprate; //updates text box with current respiration rate
                         };
